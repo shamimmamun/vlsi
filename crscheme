@@ -1,0 +1,295 @@
+16T NOR-TCAM with CR scheme simulation
+
+VDD vdd 0 1.2V
+.PARAM lbd = 130e-9
+
+.SUBCKT INVERTER IN OUT
+M1 OUT IN vdd vdd PMOS (L=0.13u,W=0.13u)
+M2 OUT IN 0 0 NMOS(L=0.13u,W=0.325u)
+.ENDS INVERTER
+
+.SUBCKT SRAM  bl blb wl data datab
+X1 data datab INVERTER
+X2 datab data INVERTER
+M3 bl wl data 0 NMOS(L=0.13u,W=0.13u)
+M4 blb wl datab 0 NMOS(L=0.13u,W=0.13u)
+.ENDS SRAM
+
+.SUBCKT TCAM bl_1 blb_1 bl_2 blb_2 wl sl_1 sl_2 ml
+X4 bl_1 blb_1 wl data1 datab1 SRAM
+X5 bl_2 blb_2 wl data2 datab2  SRAM
+
+M7 ml sl_2 j1 0 NMOS (L=0.13u,W=0.13u)
+M8 j1 data1 0 0 NMOS (L=0.13u,W=0.13u)
+M9 ml sl_1 j2 0  NMOS (L=0.13u,W=0.13u)
+M10 j2 data2 0 0 NMOS (L=0.13u,W=0.13u)
+.ENDS TCAM
+
+.SUBCKT NAND2 in1 in2 out
+M11 out in1 vdd vdd PMOS(L=0.13u,W=0.13u)
+M12 out in2 vdd vdd PMOS(L=0.13u,W=0.13u)
+M13 out in1 s 0 NMOS(L=0.13u,W=0.13u)
+M14 s in2 0 0 NMOS(L=0.13u,W=0.13u)
+.ENDS NAND2
+
+X53 bl1_1 blb1_1 INVERTER
+X54 bl2_1 blb2_1 INVERTER
+X55 bl1_2 blb1_2 INVERTER
+X56 bl2_2 blb2_2 INVERTER
+X57 bl1_3 blb1_3 INVERTER
+X58 bl2_3 blb2_3 INVERTER
+X59 bl1_4 blb1_4 INVERTER
+X60 bl2_4 blb2_4 INVERTER
+X61 bl1_5 blb1_5 INVERTER
+X62 bl2_5 blb2_5 INVERTER
+X63 bl1_6 blb1_6 INVERTER
+X64 bl2_6 blb2_6 INVERTER
+X65 bl1_7 blb1_7 INVERTER
+X66 bl2_7 blb2_7 INVERTER
+X67 bl1_8 blb1_8 INVERTER
+X68 bl2_8 blb2_8 INVERTER
+X69 bl1_9 blb1_9 INVERTER
+X70 bl2_9 blb2_9 INVERTER
+X71 bl1_10 blb1_10 INVERTER
+X72 bl2_10 blb2_10 INVERTER
+X73 bl1_11 blb1_11 INVERTER
+X74 bl2_11 blb2_11 INVERTER
+X75 bl1_12 blb1_12 INVERTER
+X76 bl2_12 blb2_12 INVERTER
+X77 bl1_13 blb1_13 INVERTER
+X78 bl2_13 blb2_13 INVERTER
+X79 bl1_14 blb1_14 INVERTER
+X80 bl2_14 blb2_14 INVERTER
+X81 bl1_15 blb1_15 INVERTER
+X82 bl2_15 blb2_15 INVERTER
+X83 bl1_16 blb1_16 INVERTER
+X84 bl2_16 blb2_16 INVERTER
+X85 bl1_17 blb1_17 INVERTER
+X86 bl2_17 blb2_17 INVERTER
+X87 bl1_18 blb1_18 INVERTER
+X88 bl2_18 blb2_18 INVERTER
+X89 bl1_19 blb1_19 INVERTER
+X90 bl2_19 blb2_19 INVERTER
+X91 bl1_20 blb1_20 INVERTER
+X92 bl2_20 blb2_20 INVERTER
+X93 bl1_21 blb1_21 INVERTER
+X94 bl2_21 blb2_21 INVERTER
+X95 bl1_22 blb1_22 INVERTER
+X96 bl2_22 blb2_22 INVERTER
+X97 bl1_23 blb1_23 INVERTER
+X98 bl2_23 blb2_23 INVERTER
+X99 bl1_24 blb1_24 INVERTER
+X100 bl2_24 blb2_24 INVERTER
+X101 bl1_25 blb1_25 INVERTER
+X102 bl2_25 blb2_25 INVERTER
+X103 bl1_26 blb1_26 INVERTER
+X104 bl2_26 blb2_26 INVERTER
+X105 bl1_27 blb1_27 INVERTER
+X106 bl2_27 blb2_27 INVERTER
+X107 bl1_28 blb1_28 INVERTER
+X108 bl2_28 blb2_28 INVERTER
+X109 bl1_29 blb1_29 INVERTER
+X110 bl2_29 blb2_29 INVERTER
+X111 bl1_30 blb1_30 INVERTER
+X112 bl2_30 blb2_30 INVERTER
+X113 bl1_31 blb1_31 INVERTER
+X114 bl2_31 blb2_31 INVERTER
+X115 bl1_32 blb1_32 INVERTER
+X116 bl2_32 blb2_32 INVERTER
+
+C1_1 sl1_1 0 4.7nF
+C2_1 sl2_1 0 4.7nF
+C1_2 sl1_2 0 4.7nF
+C2_2 sl2_2 0 4.7nF
+C1_3 sl1_3 0 4.7nF
+C2_3 sl2_3 0 4.7nF
+C1_4 sl1_4 0 4.7nF
+C2_4 sl2_4 0 4.7nF
+C1_5 sl1_5 0 4.7nF
+C2_5 sl2_5 0 4.7nF
+C1_6 sl1_6 0 4.7nF
+C2_6 sl2_6 0 4.7nF
+C1_7 sl1_7 0 4.7nF
+C2_7 sl2_7 0 4.7nF
+C1_8 sl1_8 0 4.7nF
+C2_8 sl2_8 0 4.7nF
+C1_9 sl1_9 0 4.7nF
+C2_9 sl2_9 0 4.7nF
+C1_10 sl1_10 0 4.7nF
+C2_10 sl2_10 0 4.7nF
+C1_11 sl1_11 0 4.7nF
+C2_11 sl2_11 0 4.7nF
+C1_12 sl1_12 0 4.7nF
+C2_12 sl2_12 0 4.7nF
+C1_13 sl1_13 0 4.7nF
+C2_13 sl2_13 0 4.7nF
+C1_14 sl1_14 0 4.7nF
+C2_14 sl2_14 0 4.7nF
+C1_15 sl1_15 0 4.7nF
+C2_15 sl2_15 0 4.7nF
+C1_16 sl1_16 0 4.7nF
+C2_16 sl2_16 0 4.7nF
+C1_17 sl1_17 0 4.7nF
+C2_17 sl2_17 0 4.7nF
+C1_18 sl1_18 0 4.7nF
+C2_18 sl2_18 0 4.7nF
+C1_19 sl1_19 0 4.7nF
+C2_19 sl2_19 0 4.7nF
+C1_20 sl1_20 0 4.7nF
+C2_20 sl2_20 0 4.7nF
+C1_21 sl1_21 0 4.7nF
+C2_21 sl2_21 0 4.7nF
+C1_22 sl1_22 0 4.7nF
+C2_22 sl2_22 0 4.7nF
+C1_23 sl1_23 0 4.7nF
+C2_23 sl2_23 0 4.7nF
+C1_24 sl1_24 0 4.7nF
+C2_24 sl2_24 0 4.7nF
+C1_25 sl1_25 0 4.7nF
+C2_25 sl2_25 0 4.7nF
+C1_26 sl1_26 0 4.7nF
+C2_26 sl2_26 0 4.7nF
+C1_27 sl1_27 0 4.7nF
+C2_27 sl2_27 0 4.7nF
+C1_28 sl1_28 0 4.7nF
+C2_28 sl2_28 0 4.7nF
+C1_29 sl1_29 0 4.7nF
+C2_29 sl2_29 0 4.7nF
+C1_30 sl1_30 0 4.7nF
+C2_30 sl2_30 0 4.7nF
+C1_31 sl1_31 0 4.7nF
+C2_31 sl2_31 0 4.7nF
+C1_32 sl1_32 0 4.7nF
+C2_32 sl2_32 0 4.7nF
+
+Cen    mlen    0  4.7pF
+Crst   mlrst   0  4.7pF
+Cbias  vbias   0  4.7pF
+
+
+
+.SUBCKT MATCHLINE wl ml 
+
+
+
+X20 bl1_1 blb1_1 bl2_1 blb2_1 wl sl1_1 sl2_1 ml TCAM
+X21 bl1_2 blb1_2 bl2_2 blb2_2 wl sl1_2 sl2_2 ml TCAM
+X22 bl1_3 blb1_3 bl2_3 blb2_3 wl sl1_3 sl2_3 ml TCAM
+X23 bl1_4 blb1_4 bl2_4 blb2_4 wl sl1_4 sl2_4 ml TCAM
+X24 bl1_5 blb1_5 bl2_5 blb2_5 wl sl1_5 sl2_5 ml TCAM
+X25 bl1_6 blb1_6 bl2_6 blb2_6 wl sl1_6 sl2_6 ml TCAM
+X26 bl1_7 blb1_7 bl2_7 blb2_7 wl sl1_7 sl2_7 ml TCAM
+X27 bl1_8 blb1_8 bl2_8 blb2_8 wl sl1_8 sl2_8 ml TCAM
+X28 bl1_9 blb1_9 bl2_9 blb2_9 wl sl1_9 sl2_9 ml TCAM
+X29 bl1_10 blb1_10 bl2_10 blb2_10 wl sl1_10 sl2_10 ml TCAM
+X30 bl1_11 blb1_11 bl2_11 blb2_11 wl sl1_11 sl2_11 ml TCAM
+X31 bl1_12 blb1_12 bl2_12 blb2_12 wl sl1_12 sl2_12 ml TCAM
+X32 bl1_13 blb1_13 bl2_13 blb2_13 wl sl1_13 sl2_13 ml TCAM
+X33 bl1_14 blb1_14 bl2_14 blb2_14 wl sl1_14 sl2_14 ml TCAM
+X34 bl1_15 blb1_15 bl2_15 blb2_15 wl sl1_15 sl2_15 ml TCAM
+X35 bl1_16 blb1_16 bl2_16 blb2_16 wl sl1_16 sl2_16 ml TCAM
+X36 bl1_17 blb1_17 bl2_17 blb2_17 wl sl1_17 sl2_17 ml TCAM
+X37 bl1_18 blb1_18 bl2_18 blb2_18 wl sl1_18 sl2_18 ml TCAM
+X38 bl1_19 blb1_19 bl2_19 blb2_19 wl sl1_19 sl2_19 ml TCAM
+X39 bl1_20 blb1_20 bl2_20 blb2_20 wl sl1_20 sl2_20 ml TCAM
+X40 bl1_21 blb1_21 bl2_21 blb2_21 wl sl1_21 sl2_21 ml TCAM
+X41 bl1_22 blb1_22 bl2_22 blb2_22 wl sl1_22 sl2_22 ml TCAM
+X42 bl1_23 blb1_23 bl2_23 blb2_23 wl sl1_23 sl2_23 ml TCAM
+X43 bl1_24 blb1_24 bl2_24 blb2_24 wl sl1_24 sl2_24 ml TCAM
+X44 bl1_25 blb1_25 bl2_25 blb2_25 wl sl1_25 sl2_25 ml TCAM
+X45 bl1_26 blb1_26 bl2_26 blb2_26 wl sl1_26 sl2_26 ml TCAM
+X46 bl1_27 blb1_27 bl2_27 blb2_27 wl sl1_27 sl2_27 ml TCAM
+X47 bl1_28 blb1_28 bl2_28 blb2_28 wl sl1_28 sl2_28 ml TCAM
+X48 bl1_29 blb1_29 bl2_29 blb2_29 wl sl1_29 sl2_29 ml TCAM
+X49 bl1_30 blb1_30 bl2_30 blb2_30 wl sl1_30 sl2_30 ml TCAM
+X50 bl1_31 blb1_31 bl2_31 blb2_31 wl sl1_31 sl2_31 ml TCAM
+X51 bl1_32 blb1_32 bl2_32 blb2_32 wl sl1_32 sl2_32 ml TCAM
+
+
+.ENDS MATCHLINE
+
+
+
+.SUBCKT DECISION ml mlso
+
+
+M15 s vbias vdd vdd PMOS (L=0.13u,W=0.39u)
+M16 ml nand s vdd PMOS(L=0.13u,W=0.39u)
+X6 mloffb mlen nand NAND2
+
+M17 ml mlrst 0 0 NMOS (L=0.13u,W=0.13u)
+M18 mlsob ml 0 0 NMOS (L=0.13u,W=0.13u)
+M19 mlsob mlrstb vdd vdd PMOS(L=0.13u,W=0.13u)
+M20 mlsob mlso vdd vdd PMOS(L=0.13u,W=0.13u)
+X7 mlsob mlso INVERTER
+X8 mlrst mlrstb INVERTER
+.ENDS DECISION
+
+.SUBCKT WORD wl ml mlsa
+
+X117 wl ml MATCHLINE
+X118 ml mlsa DECISION
+
+.ENDS WORD
+
+
+*---------------------------MAIN_CKT------------------------------
+.GLOBAL vdd mlen mlrst vbias mlrstb mloffb
++ bl1_1 bl2_1 bl1_2 bl2_2 bl1_3 bl2_3 bl1_4 bl2_4 bl1_5 bl2_5 bl1_6 bl2_6 bl1_7 bl2_7 bl1_8 bl2_8 bl1_9 bl2_9 bl1_10 bl2_10 bl1_11 bl2_11 bl1_12 bl2_12 bl1_13 bl2_13 bl1_14 bl2_14 bl1_15 bl2_15 bl1_16 bl2_16 bl1_17 bl2_17 bl1_18 bl2_18 bl1_19 bl2_19 bl1_20 bl2_20 bl1_21 bl2_21 bl1_22 bl2_22 bl1_23 bl2_23 bl1_24 bl2_24 bl1_25 bl2_25 bl1_26 bl2_26 bl1_27 bl2_27 bl1_28 bl2_28 bl1_29 bl2_29 bl1_30 bl2_30 bl1_31 bl2_31 bl1_32 bl2_32 blb1_1 blb2_1 blb1_2 blb2_2 blb1_3 blb2_3 blb1_4 blb2_4 blb1_5 blb2_5 blb1_6 blb2_6 blb1_7 blb2_7 blb1_8 blb2_8 blb1_9 blb2_9 blb1_10 blb2_10 blb1_11 blb2_11 blb1_12 blb2_12 blb1_13 blb2_13 blb1_14 blb2_14 blb1_15 blb2_15 blb1_16 blb2_16 blb1_17 blb2_17 blb1_18 blb2_18 blb1_19 blb2_19 blb1_20 blb2_20 blb1_21 blb2_21 blb1_22 blb2_22 blb1_23 blb2_23 blb1_24 blb2_24 blb1_25 blb2_25 blb1_26 blb2_26 blb1_27 blb2_27 blb1_28 blb2_28 blb1_29 blb2_29 blb1_30 blb2_30 blb1_31 blb2_31 blb1_32 blb2_32  
++ sl1_1 sl2_1 sl1_2 sl2_2 sl1_3 sl2_3 sl1_4 sl2_4 sl1_5 sl2_5 sl1_6 sl2_6 sl17 sl2_7 sl1_8 sl2_8 sl1_9 sl2_9 sl1_10 sl2_10 sl1_11 sl2_11 sl1_12 sl2_12 sl1_13 sl2_13 sl1_14 sl2_14 sl1_15 sl2_15 sl1_16 sl2_16 sl1_17 sl2_17 sl1_18 sl2_18 sl1_19 sl2_19 sl1_20 sl2_20 sl1_21 sl2_21 sl1_22 sl2_22 sl1_23 sl2_23 sl1_24 sl2_24 sl1_25 sl2_25 sl1_26 sl2_26 sl1_27 sl2_27 sl1_28 sl2_28 sl1_29 sl2_29 sl1_30 sl2_30 sl1_31 sl2_31 sl1_32 sl2_32
+
+X119 wl1 ml1 mlsa1 WORD
+X120 wl2 ml2 mlsa2 WORD
+X121 wl3 ml3 mlsa3 WORD
+X122 wl4 ml4 mlsa4 WORD
+X123 wl5 ml5 mlsa5 WORD
+X124 wl6 ml6 mlsa6 WORD
+X125 wl7 ml7 mlsa7 WORD
+X126 wl8 ml8 mlsa8 WORD
+X127 wl9 ml9 mlsa9 WORD
+X128 wl10 ml10 mlsa10 WORD
+X129 wl11 ml11 mlsa11 WORD
+X130 wl12 ml12 mlsa12 WORD
+X131 wl13 ml13 mlsa13 WORD
+X132 wl14 ml14 mlsa14 WORD
+X133 wl15 ml15 mlsa15 WORD
+X134 wl16 ml16 mlsa16 WORD
+*----------------------------------Dummyword----------------------
+
+
+
+
+
+
+
+.SUBCKT DUMMYSIGNAL ml 
+M21 s vbias vdd vdd PMOS (L=0.13u,W=0.39u)
+M22 ml nand s vdd PMOS(L=0.13u,W=0.39u)
+X9 mloffb mlen nand NAND2
+
+M23 ml mlrst 0 0 NMOS (L=0.13u,W=0.13u)
+M24 dmlsob ml 0 0 NMOS (L=0.13u,W=0.13u)
+M25 dmlsob mlrstb vdd vdd PMOS(L=0.13u,W=0.13u)
+M26 dmlsob dmlso vdd vdd PMOS(L=0.13u,W=0.13u)
+X10 dmlsob dmlso INVERTER
+X11 dmlso mloffb INVERTER
+.ENDS DUMMYSIGNAL
+
+X12 dml  DUMMYSIGNAL
+X13 dwl dml MATCHLINE
+
+
+
+*----------------------------------------------------------------
+
+
+
+
+
+
+.INCLUDE "E:\PORASONA\Personal\Thesis\PSPICE CODES\TCAM\MY130nm.mdc"
+.VEC "E:\PORASONA\Personal\Thesis\PSPICE CODES\TCAM\CRscheme\Control_Signals.vec"
+.TRAN 0.005ns 12ns
+.MEASURE avg_pow AVG power
+.PROBE I(X119.X118.M15) I(X120.X118.M15) I(X121.X118.M15) I(X122.X118.M15) I(X123.X118.M15) I(X124.X118.M15) I(X125.X118.M15) I(X126.X118.M15) I(X127.X118.M15) I(X128.X118.M15) I(X129.X118.M15) I(X130.X118.M15) I(X131.X118.M15) I(X132.X118.M15) I(X133.X118.M15) I(X134.X118.M15) 
+.END
